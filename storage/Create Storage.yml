@@ -1,0 +1,17 @@
+- name: Create Storage
+  hosts: all
+  remote_user: "{{remote_user}}"
+  vars_files:
+    - variables.yml
+
+  tasks:
+    - name: Create Storage.
+      copy:
+        content: "Creating storage for, {{storage_type}}"
+        dest: ~/testfile.txt
+    - name: Allocating space.
+      copy:
+        content: "Allocating, {{size}} Gb for the storage"
+        dest: ~/testfile.txt
+  become: true
+  #become_method: sudo
